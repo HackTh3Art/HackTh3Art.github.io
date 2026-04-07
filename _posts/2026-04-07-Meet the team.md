@@ -86,9 +86,7 @@ description: This is a presentation of the team
 
     - Personal website:
 
-
-
-
+---
 
 
 ## 🧑‍🚀 Team Info
