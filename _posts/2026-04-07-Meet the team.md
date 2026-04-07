@@ -4,8 +4,9 @@ date: 2026-04-07 13:00:00 +/-0300
 categories: [team]
 tags: [members]     
 author: th3mujd11
-description: This is a presentation of the team
 ---
+
+This is a presentation of the team
 
 
 ## Core Team
@@ -43,11 +44,12 @@ description: This is a presentation of the team
 
   - **Skills:** Python, Linux, Binary analysis, and more idk:)
 
-  - **Links:**
+- **Links:**
+  
+  - GitHub: [th3mujd11](https://github.com/th3mujd11)
 
-    - GitHub: <https://github.com/th3mujd11>
+  - Personal website: [th3mujd11.github.io](https://th3mujd11.github.io)
 
-    - Personal website: <https://th3mujd11.github.io>
 
 
 
@@ -87,7 +89,7 @@ description: This is a presentation of the team
 ---
 
 
-## 🧑‍🚀 Team Info
+## Team Info
 
 
 
