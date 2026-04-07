@@ -1,8 +1,8 @@
-# About
+---
+# the default layout is 'page'
+icon: fas fa-info-circle
+order: 4
+---
 
-Welcome to **HackTh3Art**.
-
-This site hosts:
-- CTF writeups
-- cybersecurity research
-- tools and experiments
+> Add Markdodasdwadasdwwn syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
+{: .prompt-tip }
