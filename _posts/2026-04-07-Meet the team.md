@@ -5,8 +5,11 @@ categories: [team]
 tags: [members]     
 author: th3mujd11
 ---
+---
 description: This is a presentation of the team
 ---
+
+
 ## Core Team
 - **Ducky Duck**
 
@@ -25,7 +28,6 @@ description: This is a presentation of the team
     - GitHub: da
 
     - Website: da
-    --
 
 
 
@@ -47,11 +49,11 @@ description: This is a presentation of the team
 
     - GitHub: https://github.com/th3mujd11
 
-    - Personal website: https://th3mujd11.github.io
+    - Personal website: ![](https://th3mujd11.github.io)
 
 
 
-- **Alex Carter**
+- **Alex**
 
   - **Role:** 
 
