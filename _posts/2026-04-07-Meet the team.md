@@ -4,9 +4,8 @@ date: 2026-04-07 13:00:00 +/-0300
 categories: [team]
 tags: [members]
 author: th3mujd11
+description: This is a presentation of the team.
 ---
-
-This is a presentation of the team.
 
 ## Core Team
 
