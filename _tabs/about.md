@@ -1,8 +1,8 @@
 ---
-# the default layout is 'page'
+# 3xh4ck5 CTF team
 icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+Hello!
+We are 3xh4ck5 a CTF team from the south eastern part of Romania, aiming great result ducky or someone faceti vrajeala aici multam:)
