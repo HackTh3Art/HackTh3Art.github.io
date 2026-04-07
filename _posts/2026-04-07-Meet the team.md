@@ -1,6 +1,6 @@
 ---
 title: Meet the team
-date: 2026-04-07 13:00:00 +/-0300
+date: 2026-04-07 13:00:00 +0300
 categories: [team]
 tags: [members]
 author: th3mujd11
