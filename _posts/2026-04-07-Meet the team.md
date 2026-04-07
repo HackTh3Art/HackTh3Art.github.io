@@ -4,8 +4,6 @@ date: 2026-04-07 13:00:00 +/-0300
 categories: [team]
 tags: [members]     
 author: th3mujd11
----
----
 description: This is a presentation of the team
 ---
 
@@ -47,9 +45,9 @@ description: This is a presentation of the team
 
   - **Links:**
 
-    - GitHub: https://github.com/th3mujd11
+    - GitHub: <https://github.com/th3mujd11>
 
-    - Personal website: ![](https://th3mujd11.github.io)
+    - Personal website: <https://th3mujd11.github.io>
 
 
 
