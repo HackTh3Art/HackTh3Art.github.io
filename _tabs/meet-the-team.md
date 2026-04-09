@@ -143,11 +143,6 @@ order: 6
     </div>
   </div>
 
-</div>
-
-<div class="ht-section-label">Other Members</div>
-<div class="ht-team-grid">
-
   <div class="ht-member-card">
     <div class="ht-avatar">M4</div>
     <p class="ht-member-name">maria404</p>
@@ -160,5 +155,12 @@ order: 6
       <a href="https://github.com/" title="GitHub"><i class="fab fa-github"></i></a>
     </div>
   </div>
+
+</div>
+
+<!---<div class="ht-section-label">Other Members</div>
+<div class="ht-team-grid">-->
+
+  
 
 </div>
