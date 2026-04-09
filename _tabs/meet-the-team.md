@@ -54,14 +54,16 @@ order: 6
   border-color: rgba(0,204,51,0.55);
   box-shadow: 0 0 12px rgba(0,204,51,0.12);
 }
+
 .ht-avatar {
-  width: 52px;
-  height: 52px;
+  width: 52px; height: 52px;
   border-radius: 50%;
-  overflow: hidden;
   background: rgba(0,204,51,0.1);
   border: 1px solid rgba(0,204,51,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 700; color: #00cc33;
   margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
 }
 
 .ht-avatar img {
@@ -70,6 +72,7 @@ order: 6
   object-fit: cover;
   display: block;
 }
+
 .ht-member-name { font-size: 0.95rem; color: #f0f0f0; font-weight: 700; margin: 0 0 0.1rem; }
 .ht-member-role { font-size: 0.75rem; color: #00cc33; margin: 0 0 0.6rem; }
 .ht-member-bio  { font-size: 0.78rem; color: #999; flex: 1; margin-bottom: 0.8rem; line-height: 1.4; }
