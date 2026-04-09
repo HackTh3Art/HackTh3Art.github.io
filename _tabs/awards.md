@@ -83,22 +83,22 @@ order: 5
 
 <div class="ht-year-block">
   <div class="ht-year-label">2025</div>
-
+  <!---
   <div class="ht-award-row">
     <span class="ht-award-place place-1st">1st</span>
     <span class="ht-award-name">Example CTF 2025 <span class="ht-award-note">— add your results here</span></span>
     <span class="ht-award-date">2025-01</span>
-  </div>
+  </div>--->
 
 </div>
 
 <div class="ht-year-block">
   <div class="ht-year-label">2024</div>
 
-  <div class="ht-award-row">
+  <!---<div class="ht-award-row">
     <span class="ht-award-place place-fin">Finals</span>
     <span class="ht-award-name">Example CTF 2024 <span class="ht-award-note">— add your results here</span></span>
     <span class="ht-award-date">2024-11</span>
   </div>
-
+  --->
 </div>

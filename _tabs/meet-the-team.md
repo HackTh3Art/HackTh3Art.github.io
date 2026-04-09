@@ -54,16 +54,21 @@ order: 6
   border-color: rgba(0,204,51,0.55);
   box-shadow: 0 0 12px rgba(0,204,51,0.12);
 }
-
 .ht-avatar {
-  width: 52px; height: 52px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
+  overflow: hidden;
   background: rgba(0,204,51,0.1);
   border: 1px solid rgba(0,204,51,0.35);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; font-weight: 700; color: #00cc33;
   margin-bottom: 0.8rem;
-  letter-spacing: 0.05em;
+}
+
+.ht-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .ht-member-name { font-size: 0.95rem; color: #f0f0f0; font-weight: 700; margin: 0 0 0.1rem; }
 .ht-member-role { font-size: 0.75rem; color: #00cc33; margin: 0 0 0.6rem; }
@@ -115,7 +120,7 @@ order: 6
   </div>
 
   <div class="ht-member-card">
-    <div class="ht-avatar">TM</div>
+    <div class="ht-avatar"><img src="/images/th3mujd11.jpg" alt="TM"></div>
     <p class="ht-member-name">th3mujd11</p>
     <p class="ht-member-role">Forensics · Network · Web · Misc · OSINT</p>
     <p class="ht-member-bio">Insane enough to patch Whitespace files manually. DrDoofenshmirtz of challenge creation.</p>
@@ -163,4 +168,3 @@ order: 6
 
   
 
-</div>
