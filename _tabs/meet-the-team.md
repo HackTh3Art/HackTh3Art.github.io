@@ -60,15 +60,21 @@ order: 6
   border-radius: 50%;
   background: rgba(0,204,51,0.1);
   border: 1px solid rgba(0,204,51,0.35);
+  overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; font-weight: 700; color: #00cc33;
   margin-bottom: 0.8rem;
   letter-spacing: 0.05em;
 }
 
+.ht-avatar-photo {
+  background: transparent;
+}
+
 .ht-avatar img {
   width: 100%;
   height: 100%;
+  border-radius: inherit;
   object-fit: cover;
   display: block;
 }
@@ -111,7 +117,7 @@ order: 6
   <div class="ht-member-card">
     <div class="ht-avatar">DD</div>
     <p class="ht-member-name">Ducky Duck <span class="ht-badge">Captain</span></p>
-    <p class="ht-member-role">Team Leader</p>
+    <p class="ht-member-role">put your stuff here</p>
     <p class="ht-member-bio">Founded the team in late 2024. Keeps the group moving across competitions, challenge ideas, and coordination.</p>
     <div class="ht-tags">
       <span class="ht-tag">Leadership</span>
@@ -123,7 +129,7 @@ order: 6
   </div>
 
   <div class="ht-member-card">
-    <div class="ht-avatar"><img src="/images/th3mujd11.jpg" alt="TM"></div>
+    <div class="ht-avatar ht-avatar-photo"><img src="/images/th3mujd11.jpg" alt="th3mujd11"></div>
     <p class="ht-member-name">th3mujd11</p>
     <p class="ht-member-role">Forensics · Network · Web · Misc · OSINT</p>
     <p class="ht-member-bio">Insane enough to patch Whitespace files manually. DrDoofenshmirtz of challenge creation.</p>
@@ -170,4 +176,3 @@ order: 6
 <div class="ht-team-grid">-->
 
   
-
