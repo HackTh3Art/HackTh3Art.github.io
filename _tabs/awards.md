@@ -86,26 +86,32 @@ order: 5
   
   <div class="ht-award-row">
     <span class="ht-award-place place-1st">1st</span>
-    <span class="ht-award-name">National Olympiad of Cybersecurity, county phase<span class="ht-award-note">1st place for th3mujd11, 12th grade</span></span>
+    <span class="ht-award-name">National Olympiad of Cybersecurity, regional phase<span class="ht-award-note">1st place for th3mujd11, 12th grade</span></span>
     <span class="ht-award-date">2026-04-27</span>
   </div>
 
   <div class="ht-award-row">
     <span class="ht-award-place place-1st">1st</span>
-    <span class="ht-award-name">National Olympiad of Cybersecurity, county phase<span class="ht-award-note">1st place for Alex, 11th grade</span></span>
+    <span class="ht-award-name">National Olympiad of Cybersecurity, regional phase<span class="ht-award-note">1st place for Alex, 11th grade</span></span>
     <span class="ht-award-date">2026-04-27</span>
   </div>
 
   <div class="ht-award-row">
     <span class="ht-award-place place-2nd">2nd</span>
-    <span class="ht-award-name">National Olympiad of Cybersecurity, county phase<span class="ht-award-note">2nd place for Ducky Duck, 11th grade</span></span>
+    <span class="ht-award-name">National Olympiad of Cybersecurity, regional phase<span class="ht-award-note">2nd place for Ducky Duck, 11th grade</span></span>
     <span class="ht-award-date">2026-04-27</span>
   </div>
 
   <div class="ht-award-row">
     <span class="ht-award-place place-fin">Finalist</span>
-    <span class="ht-award-name">ROCSC<span class="ht-award-note">th3mujd11 qualified for the ROCSC finals, rank 24</span></span>
-    <span class="ht-award-date">2026-04-27</span>
+    <span class="ht-award-name">ROCSC<span class="ht-award-note">th3mujd11 qualified for the ROCSC finals, rank #24</span></span>
+    <span class="ht-award-date">2026-02-20</span>
+  </div>
+
+  <div class="ht-award-row">
+    <span class="ht-award-place place-fin">Finalist</span>
+    <span class="ht-award-name">UVT-CTF 2026<span class="ht-award-note">3xh4ck5 qualified for UVT-CTF, rank #110</span></span>
+    <span class="ht-award-date">2026-02-20</span>
   </div>
 
 </div>
