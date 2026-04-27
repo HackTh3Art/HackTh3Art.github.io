@@ -109,7 +109,7 @@ order: 5
   </div>
 
   <div class="ht-award-row">
-    <span class="ht-award-place place-fin">Finalist</span>
+    <span class="ht-award-place place-fin">Finalists</span>
     <span class="ht-award-name">UVT-CTF 2026<span class="ht-award-note">3xh4ck5 qualified for UVT-CTF, rank #110</span></span>
     <span class="ht-award-date">2026-02-20</span>
   </div>
