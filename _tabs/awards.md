@@ -78,7 +78,36 @@ order: 5
 <div class="ht-awards-header">
   <div class="kicker">Results</div>
   <h1>Awards</h1>
-  <p>Podium finishes, finals appearances, and competition results for 3xh4ck5.</p>
+  <p>Competition results for 3xh4ck5 and it's members.</p>
+</div>
+
+<div class="ht-year-block">
+  <div class="ht-year-label">2026</div>
+  
+  <div class="ht-award-row">
+    <span class="ht-award-place place-1st">1st</span>
+    <span class="ht-award-name">National Olympiad of Cybersecurity, county phase<span class="ht-award-note">1st place for th3mujd11, 12th grade</span></span>
+    <span class="ht-award-date">2026-04-27</span>
+  </div>
+
+  <div class="ht-award-row">
+    <span class="ht-award-place place-1st">1st</span>
+    <span class="ht-award-name">National Olympiad of Cybersecurity, county phase<span class="ht-award-note">1st place for Alex, 11th grade</span></span>
+    <span class="ht-award-date">2026-04-27</span>
+  </div>
+
+  <div class="ht-award-row">
+    <span class="ht-award-place place-2nd">2nd</span>
+    <span class="ht-award-name">National Olympiad of Cybersecurity, county phase<span class="ht-award-note">2nd place for Ducky Duck, 11th grade</span></span>
+    <span class="ht-award-date">2026-04-27</span>
+  </div>
+
+  <div class="ht-award-row">
+    <span class="ht-award-place place-fin">Finalist</span>
+    <span class="ht-award-name">ROCSC<span class="ht-award-note">th3mujd11 qualified for the ROCSC finals, rank 24</span></span>
+    <span class="ht-award-date">2026-04-27</span>
+  </div>
+
 </div>
 
 <div class="ht-year-block">
