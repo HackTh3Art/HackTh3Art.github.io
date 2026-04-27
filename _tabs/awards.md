@@ -70,7 +70,7 @@ order: 5
 .place-top5 { background: rgba(0,204,51,0.1);     color: #00cc33; border: 1px solid rgba(0,204,51,0.3); }
 .place-fin  { background: rgba(100,160,255,0.1);  color: #64a0ff; border: 1px solid rgba(100,160,255,0.3); }
 
-.ht-award-name { flex: 1; color: #f0f0f0; font-size: 0.92rem; }
+.ht-award-name { flex: 1; color: #f0f0f0; font-size: 0.92rem; display: flex; flex-direction: column; }
 .ht-award-note { font-size: 0.78rem; color: #888; }
 .ht-award-date { font-size: 0.75rem; color: #555; white-space: nowrap; }
 </style>
