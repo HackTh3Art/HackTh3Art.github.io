@@ -42,6 +42,65 @@ jobs:
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
+      - name: Deploy static site over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ftp.hacktheart.ro
+          username: github-deploy@hacktheart.ro
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./_site/
+          server-dir: ./
+          security: strict
+          timeout: 60000
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**name: Build and deploy to cPanel
+
+on:
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cpanel-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build -d _site
+        env:
+          JEKYLL_ENV: production
+
+      - name: Test site
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+
       - name: Upload release
         uses: appleboy/scp-action@v1
         with:
