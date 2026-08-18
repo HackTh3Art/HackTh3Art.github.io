@@ -45,7 +45,7 @@ jobs:
       - name: Deploy static site over FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ftp.hacktheart.ro
+          server: gts2.roserve.net
           username: github-deploy@hacktheart.ro
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           protocol: ftps
