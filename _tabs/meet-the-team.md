@@ -118,7 +118,7 @@ order: 6
     <div class="ht-avatar">DD</div>
     <p class="ht-member-name">Ducky Duck</p>
     <p class="ht-member-role">put your stuff here</p>
-    <p class="ht-member-bio">Founded the team in late 2024. Keeps the group moving across competitions, challenge ideas, and coordination.</p>
+    <p class="ht-member-bio">put stuff here too</p>
     <div class="ht-tags">
       <span class="ht-tag">Leadership</span>
       <span class="ht-tag">Misc</span>
