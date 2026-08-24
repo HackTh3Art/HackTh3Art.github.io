@@ -108,7 +108,7 @@ order: 6
 <div class="ht-team-header">
   <div class="kicker">People</div>
   <h1>Meet the Team</h1>
-  <p>3xh4ck5 — high school CTF team from Romania focused on forensics, web, network, OSINT, and reverse engineering.</p>
+  <p>The HackTheArt core team brings together current students and alumni of high schools in Slobozia.</p>
 </div>
 
 <div class="ht-section-label">Core Team</div>
@@ -116,7 +116,7 @@ order: 6
 
   <div class="ht-member-card">
     <div class="ht-avatar">DD</div>
-    <p class="ht-member-name">Ducky Duck <span class="ht-badge">Captain</span></p>
+    <p class="ht-member-name">Ducky Duck</p>
     <p class="ht-member-role">put your stuff here</p>
     <p class="ht-member-bio">Founded the team in late 2024. Keeps the group moving across competitions, challenge ideas, and coordination.</p>
     <div class="ht-tags">
@@ -130,7 +130,7 @@ order: 6
 
   <div class="ht-member-card">
     <div class="ht-avatar ht-avatar-photo"><img src="/images/th3mujd11.jpg" alt="th3mujd11"></div>
-    <p class="ht-member-name">th3mujd11</p>
+    <p class="ht-member-name">th3mujd11 <!---<span class="ht-badge">Captain</span>---> </p>
     <p class="ht-member-role">Forensics · Network · Web · Misc · OSINT</p>
     <p class="ht-member-bio">Insane enough to patch Whitespace files manually. DrDoofenshmirtz of challenge creation.</p>
     <div class="ht-tags">

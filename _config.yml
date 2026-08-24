@@ -16,7 +16,7 @@ timezone: Europe/Bucharest
 
 title: HackTheArt # the main title
 
-tagline: changes here asap # it will display as the subtitle
+tagline: Multidisciplinary informatics contest # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   changes here asap 2
@@ -43,7 +43,7 @@ social:
     - https://github.com/HackTh3Art # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/company/hacktheart
 
 # Site Verification Settings
 webmaster_verifications:
