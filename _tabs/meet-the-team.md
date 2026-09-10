@@ -160,7 +160,7 @@ order: 6
   <div class="ht-member-card">
     <div class="ht-avatar">I</div>
     <p class="ht-member-name">Ioana</p>
-    <p class="ht-member-role">—</p>
+    <p class="ht-member-role">Head of PR</p>
     <p class="ht-member-bio">iti pui tu bio aici</p>
     <div class="ht-tags">
       <span class="ht-tag">???</span>
