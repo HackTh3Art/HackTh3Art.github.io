@@ -158,6 +158,19 @@ order: 6
   </div>
 
   <div class="ht-member-card">
+    <div class="ht-avatar">I</div>
+    <p class="ht-member-name">Ioana</p>
+    <p class="ht-member-role">—</p>
+    <p class="ht-member-bio">iti pui tu bio aici</p>
+    <div class="ht-tags">
+      <span class="ht-tag">???</span>
+    </div>
+    <div class="ht-links">
+      <a href="https://github.com/" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+
+  <div class="ht-member-card">
     <div class="ht-avatar">M4</div>
     <p class="ht-member-name">maria404</p>
     <p class="ht-member-role">—</p>
