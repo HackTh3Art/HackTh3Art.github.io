@@ -35,7 +35,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: HackTheArt
-  email: hack.the.art@liceuldeart.ro # change to your email address
+  email: hack.the.art@liceuldearte.ro # change to your email address
   fediverse_handle: # fill in your fediverse handle. E.g. "@username@domain.com"
   links:
     # The first element serves as the copyright owner's link
@@ -44,6 +44,7 @@ social:
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     - https://www.linkedin.com/company/hacktheart
+    - https://discord.hacktheart.ro
 
 # Site Verification Settings
 webmaster_verifications:

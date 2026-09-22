@@ -28,10 +28,10 @@
 #   icon: 'fab fa-stack-overflow'
 #   url:  ''                  # Fill with your stackoverflow homepage
 #
-# - type: bluesky
-#   icon: 'fa-brands fa-bluesky'
-#   url: ''                   # Fill with your Bluesky profile link
-#
+- type: discord
+  icon: 'fa-brands fa-discord'
+  url: 'https://discord.hacktheart.ro'                   
+
 # - type: reddit
 #   icon: 'fa-brands fa-reddit'
 #   url: ''                   # Fill with your Reddit profile link
