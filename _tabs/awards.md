@@ -89,6 +89,12 @@ order: 5
     <span class="ht-award-name">National Olympiad of Cybersecurity, regional phase<span class="ht-award-note">1st place for th3mujd11, 12th grade</span></span>
     <span class="ht-award-date">2026-04-27</span>
   </div>
+  
+  <div class="ht-award-row">
+    <span class="ht-award-place place-fin">National phase competitor</span>
+    <span class="ht-award-name">National Olympiad of Applied Informatics, regional phase<span class="ht-award-note">1st place for th3mujd11, 12th grade</span></span>
+    <span class="ht-award-date">2026-03-22</span>
+  </div>
 
   <div class="ht-award-row">
     <span class="ht-award-place place-1st">1st</span>
