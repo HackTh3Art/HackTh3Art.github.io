@@ -159,11 +159,13 @@ order: 6
 
   <div class="ht-member-card">
     <div class="ht-avatar">I</div>
-    <p class="ht-member-name">Ioana</p>
+    <p class="ht-member-name">Ioana M.</p>
     <p class="ht-member-role">Head of PR</p>
-    <p class="ht-member-bio">iti pui tu bio aici</p>
+    <p class="ht-member-bio">Creation fairy</p>
     <div class="ht-tags">
-      <span class="ht-tag">???</span>
+      <span class="ht-tag">Marketing</span>
+      <span class="ht-tag">PR</span>
+      <span class="ht-tag">Social Media</span>
     </div>
     <div class="ht-links">
       <a href="https://github.com/" title="GitHub"><i class="fab fa-github"></i></a>
