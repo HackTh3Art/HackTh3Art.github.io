@@ -168,7 +168,7 @@ order: 6
       <span class="ht-tag">Social Media</span>
     </div>
     <div class="ht-links">
-      <a href="https://github.com/" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://github.com/efectivmia/" title="GitHub"><i class="fab fa-github"></i></a>
     </div>
   </div>
 
