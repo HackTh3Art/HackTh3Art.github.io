@@ -131,7 +131,7 @@ order: 6
   <div class="ht-member-card">
     <div class="ht-avatar ht-avatar-photo"><img src="/images/th3mujd11.jpg" alt="th3mujd11"></div>
     <p class="ht-member-name">th3mujd11 <!---<span class="ht-badge">Captain</span>---> </p>
-    <p class="ht-member-role">Forensics · Network · Web · Misc · OSINT</p>
+    <p class="ht-member-role">Forensics · Network · Web · Misc · OSINT · Head of Cybersecurity</p>
     <p class="ht-member-bio">Insane enough to patch Whitespace files manually. DrDoofenshmirtz of challenge creation.</p>
     <div class="ht-tags">
       <span class="ht-tag">Python</span>
