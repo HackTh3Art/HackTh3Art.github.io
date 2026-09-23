@@ -158,7 +158,7 @@ order: 6
   </div>
 
   <div class="ht-member-card">
-    <div class="ht-avatar">I</div>
+    <div class="ht-avatar ht-avatar-photo"><img src="/images/ioanam.jpg" alt="Ioana M."></div>
     <p class="ht-member-name">Ioana M.</p>
     <p class="ht-member-role">Head of PR</p>
     <p class="ht-member-bio">Creation fairy</p>
