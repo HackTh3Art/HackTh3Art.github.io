@@ -331,47 +331,52 @@ const calendarEl = document.getElementById("calendar");
 
 const isMobile = window.innerWidth < 640;
 
-const calendar = new FullCalendar.Calendar(calendarEl, {
-  initialView: isMobile ? "listWeek" : "dayGridMonth",
+try {
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: isMobile ? "listWeek" : "dayGridMonth",
 
-  header: {
-    left: "prev,next today",
-    center: "title",
-    right: isMobile ? "listWeek,dayGridMonth" : "dayGridMonth,timeGridWeek,listWeek"
-  },
+    header: {
+      left: "prev,next today",
+      center: "title",
+      right: isMobile ? "listWeek,dayGridMonth" : "dayGridMonth,timeGridWeek,listWeek"
+    },
 
-  height: isMobile ? "auto" : undefined,
-  contentHeight: isMobile ? "auto" : undefined,
+    height: isMobile ? "auto" : undefined,
+    contentHeight: isMobile ? "auto" : undefined,
 
-  events: events,
+    events: events,
 
-  // Mobile-friendly event display
-  eventDisplay: "block",
-  eventTimeFormat: {
-    hour: '2-digit',
-    minute: '2-digit',
-    meridiem: 'short'
-  },
+    // v5 compatible time format
+    eventTimeFormat: {
+      hour: '2-digit',
+      minute: '2-digit',
+      meridiem: 'short'
+    },
 
-  // Better touch handling
-  selectable: false,
-  eventClick: function(info) {
-    info.jsEvent.preventDefault();
+    // Better touch handling
+    selectable: false,
+    eventClick: function(info) {
+      info.jsEvent.preventDefault();
 
-    const event = {
-      id: info.event.id,
-      title: info.event.title,
-      start: info.event.start,
-      end: info.event.end,
-      location: info.event.extendedProps.location,
-      description: info.event.extendedProps.description,
-      startUtc: info.event.extendedProps.startUtc,
-      endUtc: info.event.extendedProps.endUtc
-    };
+      const event = {
+        id: info.event.id,
+        title: info.event.title,
+        start: info.event.start,
+        end: info.event.end,
+        location: info.event.extendedProps.location,
+        description: info.event.extendedProps.description,
+        startUtc: info.event.extendedProps.startUtc,
+        endUtc: info.event.extendedProps.endUtc
+      };
 
-    openEventModal(event);
-  }
-});
+      openEventModal(event);
+    }
+  });
 
-calendar.render();
+  calendar.render();
+  console.log('FullCalendar rendered successfully');
+} catch (err) {
+  console.error('FullCalendar error:', err);
+  calendarEl.innerHTML = '<p style="color: red; padding: 1rem;">Calendar failed to load. Check console for details.</p>';
+}
 </script>
