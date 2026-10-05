@@ -13,7 +13,8 @@ order: 5
 
 <div id="calendar"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/all/global.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/index.global.min.js"></script>
 
 <script>
 const events = [
