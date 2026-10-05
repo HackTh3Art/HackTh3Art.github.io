@@ -5,6 +5,163 @@ icon: fas fa-calendar
 order: 5
 ---
 
+<style>
+/* Mobile-friendly modal */
+#event-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
+}
+
+#event-modal .modal-content {
+  background: var(--card-bg, white);
+  padding: 1.5rem;
+  border-radius: 16px 16px 0 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#event-modal #modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--secondary-text, #666);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+#event-modal #modal-close:hover {
+  background: var(--hover-bg, #f0f0f0);
+}
+
+#event-modal #modal-title {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+#event-modal #modal-body p {
+  margin: 0.75rem 0;
+  line-height: 1.6;
+}
+
+#event-modal #modal-body strong {
+  display: inline-block;
+  min-width: 100px;
+  color: var(--primary-text, #333);
+}
+
+#event-modal #modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#event-modal #modal-actions .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+/* Desktop modal overrides */
+@media (min-width: 640px) {
+  #event-modal {
+    align-items: center;
+  }
+  
+  #event-modal .modal-content {
+    border-radius: 12px;
+    max-width: 500px;
+    max-height: 80vh;
+  }
+  
+  #event-modal #modal-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  
+  #event-modal #modal-actions .btn {
+    width: auto;
+    min-width: 140px;
+  }
+}
+
+/* Mobile calendar tweaks */
+@media (max-width: 639px) {
+  #calendar {
+    font-size: 0.85rem;
+  }
+  
+  .fc-header-toolbar {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+  
+  .fc-header-toolbar .fc-toolbar-chunk {
+    flex: 1 1 auto !important;
+  }
+  
+  .fc-button {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .fc-daygrid-event {
+    font-size: 0.75rem !important;
+    padding: 1px 4px !important;
+  }
+  
+  .fc-timegrid-event {
+    font-size: 0.75rem !important;
+  }
+  
+  .fc-list-event {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Touch-friendly event dots */
+.fc-daygrid-event-dot {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+/* Better tap targets */
+.fc-button {
+  min-height: 40px;
+  min-width: 40px;
+}
+</style>
+
 <div style="margin-bottom: 1rem;">
   <a href="/calendar.ics" class="btn btn-primary" target="_blank">
     <i class="fas fa-calendar-plus"></i> Subscribe to Calendar
@@ -14,12 +171,12 @@ order: 5
 <div id="calendar"></div>
 
 <!-- Event Details Modal -->
-<div id="event-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
-  <div class="modal-content" style="background: var(--card-bg, white); padding: 1.5rem; border-radius: 8px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative;">
-    <span id="modal-close" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem;">&times;</span>
-    <h3 id="modal-title" style="margin-top: 0;"></h3>
+<div id="event-modal" class="modal">
+  <div class="modal-content">
+    <span id="modal-close" aria-label="Close">&times;</span>
+    <h3 id="modal-title"></h3>
     <div id="modal-body"></div>
-    <div id="modal-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+    <div id="modal-actions"></div>
   </div>
 </div>
 
@@ -172,17 +329,32 @@ document.addEventListener('keydown', function(e) {
 
 const calendarEl = document.getElementById("calendar");
 
+const isMobile = window.innerWidth < 640;
+
 const calendar = new FullCalendar.Calendar(calendarEl, {
-  initialView: "dayGridMonth",
+  initialView: isMobile ? "listWeek" : "dayGridMonth",
 
   header: {
     left: "prev,next today",
     center: "title",
-    right: "dayGridMonth,timeGridWeek,listWeek"
+    right: isMobile ? "listWeek,dayGridMonth" : "dayGridMonth,timeGridWeek,listWeek"
   },
+
+  height: isMobile ? "auto" : undefined,
+  contentHeight: isMobile ? "auto" : undefined,
 
   events: events,
 
+  // Mobile-friendly event display
+  eventDisplay: "block",
+  eventTimeFormat: {
+    hour: '2-digit',
+    minute: '2-digit',
+    meridiem: 'short'
+  },
+
+  // Better touch handling
+  selectable: false,
   eventClick: function(info) {
     info.jsEvent.preventDefault();
 
