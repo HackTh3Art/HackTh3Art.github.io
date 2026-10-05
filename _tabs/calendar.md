@@ -13,6 +13,16 @@ order: 5
 
 <div id="calendar"></div>
 
+<!-- Event Details Modal -->
+<div id="event-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+  <div class="modal-content" style="background: var(--card-bg, white); padding: 1.5rem; border-radius: 8px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative;">
+    <span id="modal-close" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem;">&times;</span>
+    <h3 id="modal-title" style="margin-top: 0;"></h3>
+    <div id="modal-body"></div>
+    <div id="modal-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+  </div>
+</div>
+
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
 
@@ -38,6 +48,18 @@ function escapeICS(text) {
     .replace(/;/g, "\\;")
     .replace(/,/g, "\\,")
     .replace(/\r?\n/g, "\\n");
+}
+
+function formatDateTime(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleString(undefined, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
 }
 
 function makeICS(event) {
@@ -105,6 +127,49 @@ function googleCalendarURL(event) {
   return `https://calendar.google.com/calendar/render?${params}`;
 }
 
+function openEventModal(event) {
+  const modal = document.getElementById('event-modal');
+  const titleEl = document.getElementById('modal-title');
+  const bodyEl = document.getElementById('modal-body');
+  const actionsEl = document.getElementById('modal-actions');
+
+  titleEl.textContent = event.title;
+  
+  bodyEl.innerHTML = `
+    <p><strong>Date & Time:</strong> ${formatDateTime(event.start)} - ${formatDateTime(event.end)}</p>
+    <p><strong>Location:</strong> ${event.location || 'TBD'}</p>
+    <p><strong>Description:</strong> ${event.description || 'No description available.'}</p>
+  `;
+
+  actionsEl.innerHTML = `
+    <button class="btn btn-primary" onclick="downloadICS({id: '${event.id}', title: '${event.title.replace(/'/g, "\\'")}', description: '${event.description.replace(/'/g, "\\'")}', location: '${event.location.replace(/'/g, "\\'")}', startUtc: '${event.startUtc}', endUtc: '${event.endUtc}'}); closeModal();">
+      <i class="fas fa-download"></i> Download .ics
+    </button>
+    <button class="btn btn-secondary" onclick="window.open('${googleCalendarURL(event)}', '_blank'); closeModal();">
+      <i class="fab fa-google"></i> Add to Google Calendar
+    </button>
+    <button class="btn btn-outline" onclick="closeModal()">
+      Close
+    </button>
+  `;
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('event-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('event-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
 const calendarEl = document.getElementById("calendar");
 
 const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -121,37 +186,18 @@ const calendar = new FullCalendar.Calendar(calendarEl, {
   eventClick: function(info) {
     info.jsEvent.preventDefault();
 
-    const event = info.event.extendedProps;
+    const event = {
+      id: info.event.id,
+      title: info.event.title,
+      start: info.event.start,
+      end: info.event.end,
+      location: info.event.extendedProps.location,
+      description: info.event.extendedProps.description,
+      startUtc: info.event.extendedProps.startUtc,
+      endUtc: info.event.extendedProps.endUtc
+    };
 
-    const choice = prompt(
-      `Add "${info.event.title}" to your calendar:\n\n` +
-      `1 = Download .ics\n` +
-      `2 = Google Calendar`
-    );
-
-    if (choice === "1") {
-      downloadICS({
-        id: info.event.id,
-        title: info.event.title,
-        description: event.description,
-        location: event.location,
-        startUtc: event.startUtc,
-        endUtc: event.endUtc
-      });
-    }
-
-    if (choice === "2") {
-      window.open(
-        googleCalendarURL({
-          title: info.event.title,
-          description: event.description,
-          location: event.location,
-          startUtc: event.startUtc,
-          endUtc: event.endUtc
-        }),
-        "_blank"
-      );
-    }
+    openEventModal(event);
   }
 });
 
