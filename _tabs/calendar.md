@@ -184,43 +184,60 @@ order: 5
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
 
 <script>
-const events = [
-  {% for event in site.data.events %}
-  {
-    id: {{ event.id | jsonify }},
-    title: {{ event.title | jsonify }},
-    start: {{ event.start | jsonify }},
-    end: {{ event.end | jsonify }},
-    location: {{ event.location | jsonify }},
-    description: {{ event.description | jsonify }},
-    startUtc: {{ event.start_utc | jsonify }},
-    endUtc: {{ event.end_utc | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-];
+document.addEventListener('DOMContentLoaded', function() {
+  initCalendar();
+});
 
-function escapeICS(text) {
-  return String(text || "")
-    .replace(/\\/g, "\\\\")
-    .replace(/;/g, "\\;")
-    .replace(/,/g, "\\,")
-    .replace(/\r?\n/g, "\\n");
-}
+function initCalendar() {
+  const calendarEl = document.getElementById("calendar");
+  if (!calendarEl) {
+    console.error('Calendar element not found');
+    return;
+  }
 
-function formatDateTime(dateStr) {
-  const date = new Date(dateStr);
-  return date.toLocaleString(undefined, {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-}
+  if (typeof FullCalendar === 'undefined') {
+    console.error('FullCalendar not loaded');
+    calendarEl.innerHTML = '<p style="color: red; padding: 1rem;">Calendar library failed to load.</p>';
+    return;
+  }
 
-function makeICS(event) {
-  return `BEGIN:VCALENDAR
+  const events = [
+    {% for event in site.data.events %}
+    {
+      id: {{ event.id | jsonify }},
+      title: {{ event.title | jsonify }},
+      start: {{ event.start | jsonify }},
+      end: {{ event.end | jsonify }},
+      location: {{ event.location | jsonify }},
+      description: {{ event.description | jsonify }},
+      startUtc: {{ event.start_utc | jsonify }},
+      endUtc: {{ event.end_utc | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  function escapeICS(text) {
+    return String(text || "")
+      .replace(/\\/g, "\\\\")
+      .replace(/;/g, "\\;")
+      .replace(/,/g, "\\,")
+      .replace(/\r?\n/g, "\\n");
+  }
+
+  function formatDateTime(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+
+  function makeICS(event) {
+    return `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//HackTheArt//Calendar//EN
 CALSCALE:GREGORIAN
@@ -236,147 +253,146 @@ LOCATION:${escapeICS(event.location)}
 URL:https://hacktheart.ro/calendar
 END:VEVENT
 END:VCALENDAR`;
-}
+  }
 
-function formatUTC(date) {
-  const pad = n => String(n).padStart(2, "0");
+  function formatUTC(date) {
+    const pad = n => String(n).padStart(2, "0");
 
-  return (
-    date.getUTCFullYear() +
-    pad(date.getUTCMonth() + 1) +
-    pad(date.getUTCDate()) +
-    "T" +
-    pad(date.getUTCHours()) +
-    pad(date.getUTCMinutes()) +
-    pad(date.getUTCSeconds()) +
-    "Z"
-  );
-}
+    return (
+      date.getUTCFullYear() +
+      pad(date.getUTCMonth() + 1) +
+      pad(date.getUTCDate()) +
+      "T" +
+      pad(date.getUTCHours()) +
+      pad(date.getUTCMinutes()) +
+      pad(date.getUTCSeconds()) +
+      "Z"
+    );
+  }
 
-function downloadICS(event) {
-  const blob = new Blob(
-    [makeICS(event)],
-    { type: "text/calendar;charset=utf-8" }
-  );
+  function downloadICS(event) {
+    const blob = new Blob(
+      [makeICS(event)],
+      { type: "text/calendar;charset=utf-8" }
+    );
 
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
 
-  a.href = url;
-  a.download = `${event.id}.ics`;
+    a.href = url;
+    a.download = `${event.id}.ics`;
 
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
 
-  URL.revokeObjectURL(url);
-}
+    URL.revokeObjectURL(url);
+  }
 
-function googleCalendarURL(event) {
-  const params = new URLSearchParams({
-    action: "TEMPLATE",
-    text: event.title,
-    dates: `${event.startUtc}/${event.endUtc}`,
-    details: event.description,
-    location: event.location
+  function googleCalendarURL(event) {
+    const params = new URLSearchParams({
+      action: "TEMPLATE",
+      text: event.title,
+      dates: `${event.startUtc}/${event.endUtc}`,
+      details: event.description,
+      location: event.location
+    });
+
+    return `https://calendar.google.com/calendar/render?${params}`;
+  }
+
+  function openEventModal(event) {
+    const modal = document.getElementById('event-modal');
+    const titleEl = document.getElementById('modal-title');
+    const bodyEl = document.getElementById('modal-body');
+    const actionsEl = document.getElementById('modal-actions');
+
+    titleEl.textContent = event.title;
+    
+    bodyEl.innerHTML = `
+      <p><strong>Date & Time:</strong> ${formatDateTime(event.start)} - ${formatDateTime(event.end)}</p>
+      <p><strong>Location:</strong> ${event.location || 'TBD'}</p>
+      <p><strong>Description:</strong> ${event.description || 'No description available.'}</p>
+    `;
+
+    actionsEl.innerHTML = `
+      <button class="btn btn-primary" onclick="downloadICS({id: '${event.id}', title: '${event.title.replace(/'/g, "\\'")}', description: '${event.description.replace(/'/g, "\\'")}', location: '${event.location.replace(/'/g, "\\'")}', startUtc: '${event.startUtc}', endUtc: '${event.endUtc}'}); closeModal();">
+        <i class="fas fa-download"></i> Download .ics
+      </button>
+      <button class="btn btn-secondary" onclick="window.open('${googleCalendarURL(event)}', '_blank'); closeModal();">
+        <i class="fab fa-google"></i> Add to Google Calendar
+      </button>
+      <button class="btn btn-outline" onclick="closeModal()">
+        Close
+      </button>
+    `;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('event-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('event-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
   });
 
-  return `https://calendar.google.com/calendar/render?${params}`;
-}
+  const isMobile = window.innerWidth < 640;
 
-function openEventModal(event) {
-  const modal = document.getElementById('event-modal');
-  const titleEl = document.getElementById('modal-title');
-  const bodyEl = document.getElementById('modal-body');
-  const actionsEl = document.getElementById('modal-actions');
+  try {
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: isMobile ? "listWeek" : "dayGridMonth",
 
-  titleEl.textContent = event.title;
-  
-  bodyEl.innerHTML = `
-    <p><strong>Date & Time:</strong> ${formatDateTime(event.start)} - ${formatDateTime(event.end)}</p>
-    <p><strong>Location:</strong> ${event.location || 'TBD'}</p>
-    <p><strong>Description:</strong> ${event.description || 'No description available.'}</p>
-  `;
+      header: {
+        left: "prev,next today",
+        center: "title",
+        right: isMobile ? "listWeek,dayGridMonth" : "dayGridMonth,timeGridWeek,listWeek"
+      },
 
-  actionsEl.innerHTML = `
-    <button class="btn btn-primary" onclick="downloadICS({id: '${event.id}', title: '${event.title.replace(/'/g, "\\'")}', description: '${event.description.replace(/'/g, "\\'")}', location: '${event.location.replace(/'/g, "\\'")}', startUtc: '${event.startUtc}', endUtc: '${event.endUtc}'}); closeModal();">
-      <i class="fas fa-download"></i> Download .ics
-    </button>
-    <button class="btn btn-secondary" onclick="window.open('${googleCalendarURL(event)}', '_blank'); closeModal();">
-      <i class="fab fa-google"></i> Add to Google Calendar
-    </button>
-    <button class="btn btn-outline" onclick="closeModal()">
-      Close
-    </button>
-  `;
+      height: isMobile ? "auto" : undefined,
+      contentHeight: isMobile ? "auto" : undefined,
 
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
+      events: events,
 
-function closeModal() {
-  document.getElementById('event-modal').style.display = 'none';
-  document.body.style.overflow = '';
-}
+      // v5 compatible time format
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        meridiem: 'short'
+      },
 
-document.getElementById('modal-close').addEventListener('click', closeModal);
-document.getElementById('event-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
+      // Better touch handling
+      selectable: false,
+      eventClick: function(info) {
+        info.jsEvent.preventDefault();
 
-const calendarEl = document.getElementById("calendar");
+        const event = {
+          id: info.event.id,
+          title: info.event.title,
+          start: info.event.start,
+          end: info.event.end,
+          location: info.event.extendedProps.location,
+          description: info.event.extendedProps.description,
+          startUtc: info.event.extendedProps.startUtc,
+          endUtc: info.event.extendedProps.endUtc
+        };
 
-const isMobile = window.innerWidth < 640;
+        openEventModal(event);
+      }
+    });
 
-try {
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: isMobile ? "listWeek" : "dayGridMonth",
-
-    header: {
-      left: "prev,next today",
-      center: "title",
-      right: isMobile ? "listWeek,dayGridMonth" : "dayGridMonth,timeGridWeek,listWeek"
-    },
-
-    height: isMobile ? "auto" : undefined,
-    contentHeight: isMobile ? "auto" : undefined,
-
-    events: events,
-
-    // v5 compatible time format
-    eventTimeFormat: {
-      hour: '2-digit',
-      minute: '2-digit',
-      meridiem: 'short'
-    },
-
-    // Better touch handling
-    selectable: false,
-    eventClick: function(info) {
-      info.jsEvent.preventDefault();
-
-      const event = {
-        id: info.event.id,
-        title: info.event.title,
-        start: info.event.start,
-        end: info.event.end,
-        location: info.event.extendedProps.location,
-        description: info.event.extendedProps.description,
-        startUtc: info.event.extendedProps.startUtc,
-        endUtc: info.event.extendedProps.endUtc
-      };
-
-      openEventModal(event);
-    }
-  });
-
-  calendar.render();
-  console.log('FullCalendar rendered successfully');
-} catch (err) {
-  console.error('FullCalendar error:', err);
-  calendarEl.innerHTML = '<p style="color: red; padding: 1rem;">Calendar failed to load. Check console for details.</p>';
+    calendar.render();
+    console.log('FullCalendar rendered successfully');
+  } catch (err) {
+    console.error('FullCalendar error:', err);
+    calendarEl.innerHTML = '<p style="color: red; padding: 1rem;">Calendar failed to load. Check console for details.</p>';
+  }
 }
 </script>
