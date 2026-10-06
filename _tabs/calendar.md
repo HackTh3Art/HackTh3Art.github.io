@@ -201,20 +201,7 @@ function initCalendar() {
     return;
   }
 
-  const events = [
-    {% for event in site.data.events %}
-    {
-      id: {{ event.id | jsonify }},
-      title: {{ event.title | jsonify }},
-      start: {{ event.start | jsonify }},
-      end: {{ event.end | jsonify }},
-      location: {{ event.location | jsonify }},
-      description: {{ event.description | jsonify }},
-      startUtc: {{ event.start_utc | jsonify }},
-      endUtc: {{ event.end_utc | jsonify }}
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
+  const events = {{ site.data.events | jsonify }};
 
   function escapeICS(text) {
     return String(text || "")
@@ -245,8 +232,8 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:${escapeICS(event.id)}@hacktheart.ro
 DTSTAMP:${formatUTC(new Date())}
-DTSTART:${event.startUtc}
-DTEND:${event.endUtc}
+DTSTART:${event.start_utc}
+DTEND:${event.end_utc}
 SUMMARY:${escapeICS(event.title)}
 DESCRIPTION:${escapeICS(event.description)}
 LOCATION:${escapeICS(event.location)}
@@ -293,7 +280,7 @@ END:VCALENDAR`;
     const params = new URLSearchParams({
       action: "TEMPLATE",
       text: event.title,
-      dates: `${event.startUtc}/${event.endUtc}`,
+      dates: `${event.start_utc}/${event.end_utc}`,
       details: event.description,
       location: event.location
     });
@@ -316,7 +303,7 @@ END:VCALENDAR`;
     `;
 
     actionsEl.innerHTML = `
-      <button class="btn btn-primary" onclick="downloadICS({id: '${event.id}', title: '${event.title.replace(/'/g, "\\'")}', description: '${event.description.replace(/'/g, "\\'")}', location: '${event.location.replace(/'/g, "\\'")}', startUtc: '${event.startUtc}', endUtc: '${event.endUtc}'}); closeModal();">
+      <button class="btn btn-primary" onclick="downloadICS({id: '${event.id}', title: '${event.title.replace(/'/g, "\\'")}', description: '${event.description.replace(/'/g, "\\'")}', location: '${event.location.replace(/'/g, "\\'")}', startUtc: '${event.start_utc}', endUtc: '${event.end_utc}'}); closeModal();">
         <i class="fas fa-download"></i> Download .ics
       </button>
       <button class="btn btn-secondary" onclick="window.open('${googleCalendarURL(event)}', '_blank'); closeModal();">
@@ -380,8 +367,8 @@ END:VCALENDAR`;
           end: info.event.end,
           location: info.event.extendedProps.location,
           description: info.event.extendedProps.description,
-          startUtc: info.event.extendedProps.startUtc,
-          endUtc: info.event.extendedProps.endUtc
+          start_utc: info.event.extendedProps.start_utc,
+          end_utc: info.event.extendedProps.end_utc
         };
 
         openEventModal(event);

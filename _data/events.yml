@@ -14,7 +14,7 @@
   start: "2026-10-10T12:00:00+03:00"
   end: "2026-10-10T15:00:00+03:00"
   start_utc: "20261010T090000Z"
-  end_utc: "20261010T1120000Z"
+  end_utc: "20261010T120000Z"
   location: "Liceul de Arte, Slobozia"
   description: "Intro in networking"
 
