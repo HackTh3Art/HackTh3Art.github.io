@@ -204,6 +204,9 @@ compress_html:
   endings: all
   profile: false
   blanklines: false
+  # Keep inline <script> bodies byte-for-byte: stripping newlines turns
+  # `//` line comments into runaway comments that break JS parsing.
+  keep_script_tags: true
   ignore:
     envs: [development]
 

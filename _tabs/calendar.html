@@ -348,14 +348,12 @@ END:VCALENDAR`;
 
       events: events,
 
-      // v5 compatible time format
       eventTimeFormat: {
         hour: '2-digit',
         minute: '2-digit',
         meridiem: 'short'
       },
 
-      // Better touch handling
       selectable: false,
       eventClick: function(info) {
         info.jsEvent.preventDefault();
