@@ -303,16 +303,28 @@ END:VCALENDAR`;
     `;
 
     actionsEl.innerHTML = `
-      <button class="btn btn-primary" onclick="downloadICS({id: '${event.id}', title: '${event.title.replace(/'/g, "\\'")}', description: '${event.description.replace(/'/g, "\\'")}', location: '${event.location.replace(/'/g, "\\'")}', startUtc: '${event.start_utc}', endUtc: '${event.end_utc}'}); closeModal();">
+      <button type="button" class="btn btn-primary" data-action="ics">
         <i class="fas fa-download"></i> Download .ics
       </button>
-      <button class="btn btn-secondary" onclick="window.open('${googleCalendarURL(event)}', '_blank'); closeModal();">
+      <button type="button" class="btn btn-secondary" data-action="google">
         <i class="fab fa-google"></i> Add to Google Calendar
       </button>
-      <button class="btn btn-outline" onclick="closeModal()">
+      <button type="button" class="btn btn-outline" data-action="close">
         Close
       </button>
     `;
+
+    actionsEl.querySelector('[data-action="ics"]').addEventListener('click', function() {
+      downloadICS(event);
+      closeModal();
+    });
+
+    actionsEl.querySelector('[data-action="google"]').addEventListener('click', function() {
+      window.open(googleCalendarURL(event), '_blank');
+      closeModal();
+    });
+
+    actionsEl.querySelector('[data-action="close"]').addEventListener('click', closeModal);
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
