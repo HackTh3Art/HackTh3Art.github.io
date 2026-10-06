@@ -201,7 +201,7 @@ function initCalendar() {
     return;
   }
 
-  const events = {{ site.data.events | jsonify }};
+  const events = {{ site.data.events | jsonify }} || [];
 
   function escapeICS(text) {
     return String(text || "")

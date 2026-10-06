@@ -1,6 +1,7 @@
 ---
 layout: none
 permalink: /calendar.ics
+nav_exclude: true
 ---
 
 BEGIN:VCALENDAR
