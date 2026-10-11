@@ -20,9 +20,9 @@
 
 - id: "cybsersec-workshop-0x00"
   title: "Cybersecurity Workshop 0x00"
-  start: "2026-24-11T12:00:00+03:00"
-  end: "2026-24-11T15:00:00+03:00"
-  start_utc: "20261011T090000Z"
-  end_utc: "20261011T120000Z"
+  start: "2026-10-24T12:00:00+03:00"
+  end: "2026-10-24T15:00:00+03:00"
+  start_utc: "20261024T090000Z"
+  end_utc: "20261024T120000Z"
   location: "Liceul de Arte, Slobozia"
   description: "Intro in cybersecurity"
