@@ -213,8 +213,10 @@ compress_html:
 exclude:
   - "*.gem"
   - "*.gemspec"
+  - actions-runner
   - docs
   - tools
+  - workers
   - README.md
   - LICENSE
   - purgecss.js

@@ -14,6 +14,9 @@ mama mea e florareasa
 # NPM dependencies
 node_modules
 package-lock.json
+!workers/newsletter/package-lock.json
+.dev.vars*
+!.dev.vars.example
 actions-runner
 # IDE configurations
 .idea

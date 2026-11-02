@@ -1,0 +1,102 @@
+---
+layout: page
+title: Newsletter
+icon: fas fa-envelope
+order: 7
+---
+
+<style>
+  .newsletter-shell {
+    max-width: 680px;
+    margin: 1.5rem auto;
+    padding: 2rem;
+    border: 1px solid rgba(0, 204, 51, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 204, 51, 0.04);
+  }
+
+  .newsletter-kicker {
+    margin-bottom: 0.5rem;
+    color: #00cc33;
+    font-family: "Courier New", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .newsletter-kicker::before { content: "> "; }
+  .newsletter-shell h1 { margin-bottom: 0.75rem; }
+  .newsletter-shell > p { margin-bottom: 1.5rem; }
+
+  .newsletter-field { margin-bottom: 1rem; }
+  .newsletter-field label { display: block; margin-bottom: 0.4rem; font-weight: 600; }
+  .newsletter-field input {
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--main-border-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    background: var(--main-bg);
+  }
+
+  .newsletter-consent {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    margin: 1.2rem 0;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-consent input { margin-top: 0.25rem; }
+  .newsletter-button {
+    padding: 0.65rem 1.2rem;
+    border: 1px solid #00cc33;
+    border-radius: 6px;
+    color: #071409;
+    background: #00cc33;
+    font-weight: 700;
+  }
+
+  .newsletter-button:disabled { cursor: wait; opacity: 0.65; }
+  .newsletter-status { min-height: 1.5rem; margin: 1rem 0 0; }
+  .newsletter-status[data-state="success"] { color: #00a82a; }
+  .newsletter-status[data-state="error"] { color: #d9534f; }
+  .newsletter-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+</style>
+
+<section class="newsletter-shell" aria-labelledby="newsletter-title">
+  <div class="newsletter-kicker">HackTheArt updates</div>
+  <h1 id="newsletter-title">Stay in the loop</h1>
+  <p>Get contest announcements, important dates, and new HackTheArt stories by email.</p>
+
+  <form
+    id="newsletter-form"
+    action="https://hacktheart-newsletter.th3mujd11.workers.dev/api/newsletter"
+    method="post"
+  >
+    <div class="newsletter-field">
+      <label for="newsletter-name">Name <span class="text-muted">(optional)</span></label>
+      <input id="newsletter-name" name="name" type="text" autocomplete="name" maxlength="100">
+    </div>
+
+    <div class="newsletter-field">
+      <label for="newsletter-email">Email address</label>
+      <input id="newsletter-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+    </div>
+
+    <div class="newsletter-honeypot" aria-hidden="true">
+      <label for="newsletter-website">Website</label>
+      <input id="newsletter-website" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <label class="newsletter-consent">
+      <input name="consent" type="checkbox" value="yes" required>
+      <span>I agree to receive HackTheArt news by email. I can unsubscribe from any newsletter email.</span>
+    </label>
+
+    <button class="newsletter-button" type="submit">Subscribe</button>
+    <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<script src="{{ '/assets/js/newsletter.js' | relative_url }}" defer></script>

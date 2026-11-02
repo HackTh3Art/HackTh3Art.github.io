@@ -75,3 +75,16 @@ Edit or add files in `/_tabs/` and define front matter fields such as:
 ## Deployment notes
 
 The repository includes deployment and rollback notes in `ROLLBACK.md` for the production hosting workflow.
+
+## Newsletter Worker
+
+The newsletter form posts to a Cloudflare Worker in `workers/newsletter`. The Worker runs at `hacktheart-newsletter.th3mujd11.workers.dev`, keeps the Posta API key outside the browser, and subscribes visitors to the configured Posta list.
+
+Before the first deployment:
+
+1. Open `workers/newsletter` and install its dependencies.
+2. Authenticate Wrangler with the Cloudflare account that manages `hacktheart.ro`.
+3. Set the required `POSTA_BASE_URL` and `POSTA_API_KEY` secrets with `wrangler secret put`.
+4. Deploy with `npm run deploy`.
+
+`POSTA_LIST_NAME` and the permitted website origin are configured in `workers/newsletter/wrangler.jsonc`.
