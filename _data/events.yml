@@ -29,10 +29,10 @@
 
 - id: "programare-workshop-0x00"
   title: "Programming Workshop 0x00"
-  start: "2026-11-07T12:00:00+03:00"
-  end: "2026-11-07T15:00:00+03:00"
-  start_utc: "20261107T090000Z"
-  end_utc: "20261107T120000Z"
+  start: "2026-11-14T12:00:00+03:00"
+  end: "2026-11-14T15:00:00+03:00"
+  start_utc: "20261114T090000Z"
+  end_utc: "20261114T120000Z"
   location: "Liceul de Arte, Slobozia"
   description: "Intro in programming"
 
