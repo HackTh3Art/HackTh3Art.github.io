@@ -1,0 +1,48 @@
+name: Deploy newsletter Worker
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - workers/newsletter/**
+      - .github/workflows/newsletter-worker.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: newsletter-worker-production
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: workers/newsletter
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: workers/newsletter/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Worker
+        run: npm run check
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: workers/newsletter
+          command: deploy
