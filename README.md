@@ -88,3 +88,5 @@ Before the first deployment:
 4. Deploy with `npm run deploy`.
 
 `POSTA_LIST_NAME` and the permitted website origin are configured in `workers/newsletter/wrangler.jsonc`.
+
+Production deployments are also run by `.github/workflows/newsletter-worker.yml` when the Worker changes. Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repository secrets before enabling that workflow; the Posta secrets remain configured in the Cloudflare Worker.
